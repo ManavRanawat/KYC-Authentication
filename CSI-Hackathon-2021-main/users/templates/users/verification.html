@@ -1,0 +1,30 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+      {% if verified_documents.aadhar %}
+        <p>Aadhar Card Already verified.</p>
+      {% else %}
+      <a href ="{%  url 'aadhar_verify' %}">Verify AADHAR</a><br>
+       {% endif %}
+
+       {% if verified_documents.pan %}
+        <p>Pan Card Already verified.</p>
+      {% else %}
+      <a href ="{%  url  'pan_verify' %}">Verify pancard</a><br>
+       {% endif %}
+
+       {% if verified_documents.driving_license %}
+        <p>Driving Licence Already verified.</p>
+      {% else %}
+      <a href ="{%  url 'driving_verify' %}">Verify driving license</a><br>
+       {% endif %}
+    </div>
+{% endblock content %}
